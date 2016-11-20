@@ -40,12 +40,12 @@ class GaAddCampaignToLinks implements DomManipulatorInterface
                     $link->removeAttribute('utm_campaign');
                 }
                 if ($utm_content) {
-                    $link->setAttribute('utm_content', $utm_campaign);
+                    $link->setAttribute('utm_content', $utm_content);
                 } else {
                     $link->removeAttribute('utm_content');
                 }
                 if ($utm_term) {
-                    $link->setAttribute('utm_term', $utm_campaign);
+                    $link->setAttribute('utm_term', $utm_term);
                 } else {
                     $link->removeAttribute('utm_term');
                 }
