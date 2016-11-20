@@ -1,0 +1,26 @@
+{
+  "name": "24hoursmedia/php-dom-manipulations",
+  "type": "library",
+  "description": "Collections of dom manipulations",
+  "keywords": [],
+  "homepage": "https://github.com/24HOURSMEDIA/php-dom-manipulations",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "24hoursmedia"
+    }
+  ],
+  "require": {
+    "php": ">=5.6"
+  },
+  "autoload": {
+    "psr-4": { "T4\\PHPDomManipulations\\": "src" },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "minimum-stability": "dev",
+  "extra": {
+
+  }
+}
