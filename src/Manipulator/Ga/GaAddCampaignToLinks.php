@@ -17,7 +17,7 @@ class GaAddCampaignToLinks implements DomManipulatorInterface
     /**
      * @param \DOMDocument $doc
      */
-    function modify(\DOMDocument $doc, $utm_source = '', $utm_medium = '', $utm_campaign = '')
+    function modify(\DOMDocument $doc, $utm_source = '', $utm_medium = '', $utm_campaign = '', $utm_content = '', $utm_term = '')
     {
         $links = $doc->getElementsByTagName('a');
         /* @var $links \DOMElement[] */
@@ -39,8 +39,16 @@ class GaAddCampaignToLinks implements DomManipulatorInterface
                 } else {
                     $link->removeAttribute('utm_campaign');
                 }
-                $link->removeAttribute('utm_term');
-                $link->removeAttribute('utm_content');
+                if ($utm_content) {
+                    $link->setAttribute('utm_content', $utm_campaign);
+                } else {
+                    $link->removeAttribute('utm_content');
+                }
+                if ($utm_term) {
+                    $link->setAttribute('utm_term', $utm_campaign);
+                } else {
+                    $link->removeAttribute('utm_term');
+                }
             }
 
         }
