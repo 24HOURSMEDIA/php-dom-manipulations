@@ -14,7 +14,7 @@
     "php": ">=5.6"
   },
   "autoload": {
-    "psr-4": { "T4\\PHPDomManipulations\\": "src" },
+    "psr-4": { "T4\\DomManipulations\\": "src/" },
     "exclude-from-classmap": [
       "/Tests/"
     ]
