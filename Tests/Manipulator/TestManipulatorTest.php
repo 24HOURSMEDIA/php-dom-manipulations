@@ -8,7 +8,7 @@ class TestManipulatorTest extends \PHPUnit_Framework_TestCase
 
     function testManipulate() {
 
-        $html = '<div id="root"><div test="ORG"></div><span><div test="ORG"></div></span></div>';
+        $html = '<div id="root"><div test="ORG"></div>test<span>test<div test="ORG">test</div></span>test</div>';
 
         $doc = new DOMDocument();
         $doc->loadHTML($html);
