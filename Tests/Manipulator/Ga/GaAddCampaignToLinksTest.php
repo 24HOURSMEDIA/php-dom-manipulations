@@ -12,10 +12,10 @@ class GaAddCampaignToLinksTest extends \PHPUnit_Framework_TestCase
         $doc = new \DOMDocument();
         $doc->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $m = new \T4\DomManipulations\Manipulator\Ga\GaAddCampaignToLinks();
-        $m->modify($doc, '_src');
+        $m->modify($doc, '_src', '_medium', '_campaign');
         //$m->modify($doc, 'newsletter-week14', 'email', 'spring');
         $newHtml = $doc->saveHTML();
-        $this->assertContains('utm_source="_src"', $newHtml);
+        $this->assertContains('utm_source=_src', $newHtml);
 
         // do not modify anchors test
         $html = '<a href="#">test</a>';

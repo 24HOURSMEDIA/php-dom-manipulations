@@ -24,31 +24,19 @@ class GaAddCampaignToLinks implements DomManipulatorInterface
         foreach ($links as $link) {
             $href = $link->getAttribute('href');
             if ($href && $href[0] != '#') {
-                if ($utm_source) {
-                    $link->setAttribute('utm_source', $utm_source);
-                } else {
-                    $link->removeAttribute('utm_source');
+                $fields = ['utm_source' => $utm_source, 'utm_medium' => $utm_medium, 'utm_campaign' => $utm_campaign, 'utm_content' => $utm_content, 'utm_term' => $utm_term];
+                $appendQuery = [];
+                foreach ($fields as $k => $v) {
+                    if ($v) {
+                        // unset existing field..
+                        $href = str_replace($v.'=', '_'.$v.'=', $href);
+                        $appendQuery[] = urlencode($k) . '=' . urlencode($v);
+                    }
+
                 }
-                if ($utm_medium) {
-                    $link->setAttribute('utm_medium', $utm_medium);
-                } else {
-                    $link->removeAttribute('utm_medium');
-                }
-                if ($utm_campaign) {
-                    $link->setAttribute('utm_campaign', $utm_campaign);
-                } else {
-                    $link->removeAttribute('utm_campaign');
-                }
-                if ($utm_content) {
-                    $link->setAttribute('utm_content', $utm_content);
-                } else {
-                    $link->removeAttribute('utm_content');
-                }
-                if ($utm_term) {
-                    $link->setAttribute('utm_term', $utm_term);
-                } else {
-                    $link->removeAttribute('utm_term');
-                }
+                $href.= (strstr($href, '?')) ? '&' : '?';
+                $href.= implode('&', $appendQuery);
+                $link->setAttribute('href', $href);
             }
 
         }
