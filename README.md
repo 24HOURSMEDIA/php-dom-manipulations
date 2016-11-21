@@ -21,7 +21,8 @@ $m = new \T4\DomManipulations\Manipulator\Ga\GaAddCampaignToLinks();
 $m->modify($doc, 'newsletter-week14', 'email', 'spring');
 $newHtml = $doc->saveHTML();
 
-// $newHtml:
-// <a href="test.html" utm_source="newsletter-week14" utm_medium="email" utm_campaign="spring">a</a><a href="test2.html" utm_source="newsletter-week14" utm_medium="email" utm_campaign="spring">a</a><a href="#test">c</a>
+// $newHtml example output
+// <div><a href="test.html?utm_source=_src&amp;utm_medium=_medium&amp;utm_campaign=_campaign">a</a><a href="test2.html?utm_source=_src&amp;utm_medium=_medium&amp;utm_campaign=_campaign">a</a><a href="#test">c</a></div>
+
         
 ```
