@@ -28,6 +28,19 @@ class GaAddCampaignToLinksTest extends \PHPUnit_Framework_TestCase
         $this->assertNotContains('utm_campaign', $newHtml);
 
 
+        // test invalid html
+        $doc = new \DOMDocument();
+
+        $doc->strictErrorChecking = false;
+        libxml_use_internal_errors(true);
+
+        $doc->loadHTML('</div><strong>test <a href="test">test</a>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $m = new \T4\DomManipulations\Manipulator\Ga\GaAddCampaignToLinks();
+        $m->modify($doc);
+        $newHtml = $doc->saveHTML();
+        $this->assertNotContains('utm_campaign', $newHtml);
+
+
     }
 
 }
